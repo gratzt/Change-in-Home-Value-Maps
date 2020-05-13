@@ -6,7 +6,7 @@
  are color coded according to the percent of the population in that ZCTA that is X% of some user specified demographic variable. 
  
  Running the 'Master File Mapping.py' script will prompt the user to select the following data:  
- a geographic area (city or user entered zip codes), their census key (if not provided in Private_key script file, see below),
+ a geographic area (city or user entered zip codes), their census key (if not provided in the Private_key script file, see below),
  a demographic variable, a base year, and an end year.
 
  Output is a Matplotlib plot. 
@@ -23,9 +23,10 @@ Installation
  3) Within the Modules subfolder create a python script titled 'Private_key.py'. It should have one line see below:  
     c = 'MY CENSUS API KEY FROM STEP 2'
 
- 4) Create the following folders within the main directory:  
-    Data  
-        TigerLines ZCTA
+ 4) Create the following folder and subfolder within the main directory:  
+ 
+    - Data/  
+        - TigerLines ZCTA/
 
  5) Download the Zillow housing data from https://www.zillow.com/research/data/.
     Navigate to the 'Home Values' data, select the Data Type option of 'ZHVI All Homes (SFR, Condo/Co-op) Time Series($)',
@@ -50,10 +51,10 @@ Example
     White, Black, American Indian or Alaskan Native, Asian, Native Hawaiian and Other Pacific Islander, Other Race, Two or More Races, Latino:  
     White
 
- - Enter the beginning year to track median home prices (2009-2019):  
+ - Enter the beginning year to track home prices (2009-2019):  
     2013
 
- - Enter the last year to track median home prices(2009-2019):   
+ - Enter the last year to track home prices(2009-2019):   
     2018
 
 See 'Seattle_example.png' for output.
