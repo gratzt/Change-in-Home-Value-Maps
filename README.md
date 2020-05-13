@@ -24,7 +24,7 @@ Installation
     c = 'MY CENSUS API KEY FROM STEP 2'
 
  4) Create the following folders within the main directory:  
-    Data
+    Data  
         TigerLines ZCTA
 
  5) Download the Zillow housing data from https://www.zillow.com/research/data/.
@@ -46,8 +46,8 @@ Example
  - Enter your census key, or set up a private key file and start over:  
     XXXXXXXXXXXXXXXX
 
- - Enter a demogrphic variable:
- - White, Black, American Indian or Alaskan Native, Asian, Native Hawaiian and Other Pacific Islander, Other Race, Two or More Races, Latino:  
+ - Enter a demogrphic variable:  
+    White, Black, American Indian or Alaskan Native, Asian, Native Hawaiian and Other Pacific Islander, Other Race, Two or More Races, Latino:  
     White
 
  - Enter the beginning year to track median home prices (2009-2019):  
