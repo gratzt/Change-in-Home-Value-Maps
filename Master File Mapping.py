@@ -100,8 +100,8 @@ eyear = 0
 
 while (syear not in list(range(1996, 2020))) or (eyear not in list(range(1996, 2020))):
     
-    syear = int(input('Enter the beginning year to track median home prices (1996-2019): '))
-    eyear = int(input('Enter the last year to track median home prices(1996-2019): '))
+    syear = int(input('Enter the beginning year to track home prices (1996-2019): '))
+    eyear = int(input('Enter the last year to track home prices(1996-2019): '))
     
     if (syear not in list(range(1996, 2020))) or (eyear not in list(range(1996, 2020))):
         print('\nPlease select years between 1996 and 2019, inclusive.')
