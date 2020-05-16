@@ -87,7 +87,7 @@ demodict = {'Total Housing Units' : 'P001001', 'Total Race' : 'P007001' , 'White
 
 attempt = False
 while attempt == False:
-    demo = input("Enter a demogrphic variable:\n" + ', '.join(list(demodict.keys())[2:])+ ': ')
+    demo = input("Enter a demographic variable:\n" + ', '.join(list(demodict.keys())[2:])+ ': ')
     if demo not in ', '.join(demodict.keys()):
         print('Please enter one of the provided demographic variables')
     else:
@@ -149,17 +149,17 @@ if (~zildf['per_change'].isnull()).sum() >= 5:
     
     # Grab Colors for the Map 
     price_cmap = plt.cm.get_cmap('OrRd')
-    sm = ScalarMappable(cmap=price_cmap, norm=plt.Normalize(lowbound, uppbound))
     # to_rgba doesn't handle missing values without encountering a RunTimeWarning
     maskcol = pricesshp['per_change'].isnull()
     pricesshp.loc[maskcol, 'per_change'] = 0
-    colors =  sm.to_rgba(pricesshp['per_change'])
-    pricesshp.loc[maskcol, 'per_change'] = np.nan
     
     # Plot Map
     greyplot = pricesshp[maskcol]
-    p1 = pricesshp.plot( color = colors, ax = axm)
-    p2 = greyplot.plot( color = '0.7', ax = axm)
+    vmin, vmax = lowbound, uppbound
+    p1 = pricesshp.plot( column = 'per_change', cmap = price_cmap, vmin = vmin, vmax = vmax, ax = axm)
+    pricesshp.loc[maskcol, 'per_change'] = np.nan
+
+    if maskcol.sum() != 0 : p2 = greyplot.plot( color = '0.7', ax = axm)
     
     # Axes options
     axm.spines['top'].set_visible(False)
@@ -179,6 +179,7 @@ if (~zildf['per_change'].isnull()).sum() >= 5:
     axm.set_title('Change in Home Prices From: \n {0} to {1} by Zip Code'.format(syear, eyear), fontsize = 12)
     
     # Plot Color Bar
+    sm = ScalarMappable(cmap=price_cmap, norm=plt.Normalize(lowbound, uppbound))
     tickmarks = [i for i in range(lowbound, uppbound+25, 25)]
     cbar = plt.colorbar(sm, ticks = tickmarks, ax = axm, fraction = 0.04)
     cbar.ax.set_yticklabels(list(map(lambda i : ('+' if i > 0 else "") + str(i), tickmarks)))
