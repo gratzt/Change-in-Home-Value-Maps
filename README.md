@@ -15,7 +15,8 @@
 
 Installation
 
- 1) Download the entire project.
+ 1) Download the entire project. Set up the virtual environment with Anaconda:  
+    conda env create -f env.yml
 
  2) Go to https://api.census.gov/data/key_signup.html and get a Census Bureau API key.
     Requires a name and an email.
