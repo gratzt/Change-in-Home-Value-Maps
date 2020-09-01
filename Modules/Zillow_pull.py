@@ -32,19 +32,18 @@ def get_median(ziplist, syear,  eyear):
     zillowdf = pd.read_csv(zillowpath)
     zillowdf['RegionName'] = zillowdf['RegionName'].astype(str)
     zillowdf['RegionName'] =  zillowdf['RegionName'].str.zfill(5)
-    zillowdf.drop(index = zillowdf.index[~zillowdf['RegionName'].isin(ziplist)], inplace = True)
+    zillowdf.drop(index = zillowdf.index[~zillowdf['RegionName'].isin(ziplist)],
+                  inplace=True)
     miszip = list(np.setdiff1d(ziplist, zillowdf['RegionName']))
-
     
-    # Get annual median home price
-    
+    # Get annual median home price 
     zillowdf[str(syear)] = zillowdf.loc[:,zillowdf.columns.str.contains(str(syear))].median(axis = 1)
     zillowdf[str(eyear)] = zillowdf.loc[:,zillowdf.columns.str.contains(str(eyear))].median(axis = 1)
   
     todrop = [name for name in zillowdf.columns if name not in ([str(syear), str(eyear)] + ['RegionName'])]
-    zillowdf.drop(zillowdf[todrop], axis = 1, inplace = True)
-    zillowdf.rename({'RegionName' : 'zipcode'}, inplace = True, axis = 1)
-    zillowdf['per_change'] = (zillowdf[str(eyear)]/zillowdf[str(syear)]*100).round() - 100
+    zillowdf.drop(zillowdf[todrop], axis=1, inplace=True)
+    zillowdf.rename({'RegionName' : 'zipcode'}, inplace=True, axis=1)
+    zillowdf['per_change'] = (zillowdf[str(eyear)] / zillowdf[str(syear)]*100).round() - 100
     zillowdf['zipcode'] = zillowdf['zipcode'].astype(str)
     return zillowdf, miszip
 
